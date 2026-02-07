@@ -40,5 +40,10 @@ export const generateLabReport = async (subject: string) => {
     }
   });
 
-  return JSON.parse(response.text);
+  const text = response.text;
+  if (!text) {
+    throw new Error("Failed to receive a response from the AI model.");
+  }
+
+  return JSON.parse(text);
 };
